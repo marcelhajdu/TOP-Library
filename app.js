@@ -21,6 +21,10 @@ function displayAllBooks() {
   });
 }
 
-function changeReadStatus(book) {
-  book.isRead = !book.isRead;
+function changeReadStatus(name) {
+  myLibrary.forEach((book) => {
+    if (book.title === name) {
+      book.isRead = !book.isRead;
+    }
+  });
 }
