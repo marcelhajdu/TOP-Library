@@ -14,3 +14,13 @@ function addBookToLibrary(title, author, pages, isRead) {
   let book = new Book(title, author, pages, isRead);
   myLibrary.push(book);
 }
+
+function displayAllBooks() {
+  myLibrary.forEach((book) => {
+    console.log(book);
+  });
+}
+
+function changeReadStatus(book) {
+  book.isRead = !book.isRead;
+}
