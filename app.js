@@ -21,6 +21,12 @@ function displayAllBooks() {
   });
 }
 
+function removeBook(index) {
+  if (index > -1) {
+    array.splice(index, 1);
+  }
+}
+
 function changeReadStatus(name) {
   myLibrary.forEach((book) => {
     if (book.title === name) {
