@@ -1,4 +1,5 @@
 let myLibrary = [];
+const list = document.getElementById("list");
 
 function Book(title, author, pages, isRead) {
   this.title = title;
@@ -13,6 +14,7 @@ function Book(title, author, pages, isRead) {
 function addBookToLibrary(title, author, pages, isRead) {
   let book = new Book(title, author, pages, isRead);
   myLibrary.push(book);
+  renderBooks();
 }
 
 function displayAllBooks() {
@@ -32,5 +34,13 @@ function changeReadStatus(name) {
     if (book.title === name) {
       book.isRead = !book.isRead;
     }
+  });
+}
+
+function renderBooks() {
+  myLibrary.forEach((book) => {
+    let li = document.createElement("li");
+    li.appendChild(document.createTextNode(book.title));
+    list.appendChild(li);
   });
 }
