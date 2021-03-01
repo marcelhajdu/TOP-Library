@@ -1,5 +1,10 @@
 let myLibrary = [];
 const list = document.getElementById("list");
+const addNewBook = document.getElementById("addNewBookBtn");
+
+addNewBook.addEventListener("click", () => {
+  console.log("adding new book to the library");
+});
 
 function Book(title, author, pages, isRead) {
   this.title = title;
@@ -14,14 +19,15 @@ function Book(title, author, pages, isRead) {
 function addBookToLibrary(title, author, pages, isRead) {
   let book = new Book(title, author, pages, isRead);
   myLibrary.push(book);
-  renderBooks();
 }
 
+/*
 function displayAllBooks() {
   myLibrary.forEach((book) => {
     console.log(book);
   });
 }
+*/
 
 function removeBook(index) {
   if (index > -1) {
@@ -41,6 +47,17 @@ function renderBooks() {
   myLibrary.forEach((book) => {
     let li = document.createElement("li");
     li.appendChild(document.createTextNode(book.title));
+    li.appendChild(document.createTextNode(" "));
+    li.appendChild(document.createTextNode(book.author));
+    li.appendChild(document.createTextNode(" "));
+    li.appendChild(document.createTextNode(book.pages));
+    li.appendChild(document.createTextNode(" "));
+    li.appendChild(document.createTextNode(book.isRead));
     list.appendChild(li);
   });
 }
+
+addBookToLibrary("Lord of the Rings", "Tolkien", 455, false);
+addBookToLibrary("The Hobbit", "Tolkien", 123, true);
+
+renderBooks();
