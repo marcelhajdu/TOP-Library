@@ -3,12 +3,15 @@ const list = document.getElementById("list");
 const addNewBook = document.getElementById("addNewBookBtn");
 
 addNewBook.addEventListener("click", () => {
-  const form = document.querySelector(".form");
+  const form = document.querySelector("#form");
   if (form.style.display === "none") {
     form.style.display = "block";
   } else {
     form.style.display = "none";
   }
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+  });
 });
 
 function Book(title, author, pages, isRead) {
