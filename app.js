@@ -42,13 +42,6 @@ function clearFields() {
   document.getElementById("author").value = "";
   document.getElementById("pages").value = "";
 }
-/*
-function displayAllBooks() {
-  myLibrary.forEach((book) => {
-    console.log(book);
-  });
-}
-*/
 
 function removeBook(index) {
   if (index > -1) {
@@ -66,6 +59,7 @@ function changeReadStatus(name) {
 
 function renderBooks() {
   list.innerHTML = "";
+  /*
   myLibrary.forEach((book) => {
     let li = document.createElement("li");
     li.appendChild(document.createTextNode(book.title));
@@ -77,7 +71,23 @@ function renderBooks() {
     li.appendChild(document.createTextNode(book.isRead));
     list.appendChild(li);
   });
+  */
+  for (i = 0; i < myLibrary.length; i++) {
+    let book = myLibrary[i];
+    let li = document.createElement("li");
+    li.appendChild(document.createTextNode(book.title));
+    li.appendChild(document.createTextNode(" "));
+    li.appendChild(document.createTextNode(book.author));
+    li.appendChild(document.createTextNode(" "));
+    li.appendChild(document.createTextNode(book.pages));
+    li.appendChild(document.createTextNode(" "));
+    li.appendChild(document.createTextNode(book.isRead));
+    li.setAttribute("data-id", i);
+    list.appendChild(li);
+  }
 }
 
 addBookToLibrary("Lord of the Rings", "Tolkien", 455, false);
 addBookToLibrary("The Hobbit", "Tolkien", 123, true);
+
+renderBooks();
