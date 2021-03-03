@@ -9,9 +9,17 @@ addNewBook.addEventListener("click", () => {
   } else {
     form.style.display = "none";
   }
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-  });
+});
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  let title = document.getElementById("title").value;
+  let author = document.getElementById("author").value;
+  let pages = document.getElementById("pages").value;
+  let isRead = false;
+  addBookToLibrary(title, author, pages, isRead);
+  renderBooks();
+  clearFields();
 });
 
 function Book(title, author, pages, isRead) {
@@ -29,6 +37,11 @@ function addBookToLibrary(title, author, pages, isRead) {
   myLibrary.push(book);
 }
 
+function clearFields() {
+  document.getElementById("title").value = "";
+  document.getElementById("author").value = "";
+  document.getElementById("pages").value = "";
+}
 /*
 function displayAllBooks() {
   myLibrary.forEach((book) => {
@@ -52,6 +65,7 @@ function changeReadStatus(name) {
 }
 
 function renderBooks() {
+  list.innerHTML = "";
   myLibrary.forEach((book) => {
     let li = document.createElement("li");
     li.appendChild(document.createTextNode(book.title));
@@ -67,5 +81,3 @@ function renderBooks() {
 
 addBookToLibrary("Lord of the Rings", "Tolkien", 455, false);
 addBookToLibrary("The Hobbit", "Tolkien", 123, true);
-
-renderBooks();
