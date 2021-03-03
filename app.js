@@ -3,7 +3,12 @@ const list = document.getElementById("list");
 const addNewBook = document.getElementById("addNewBookBtn");
 
 addNewBook.addEventListener("click", () => {
-  console.log("adding new book to the library");
+  const form = document.querySelector(".form");
+  if (form.style.display === "none") {
+    form.style.display = "block";
+  } else {
+    form.style.display = "none";
+  }
 });
 
 function Book(title, author, pages, isRead) {
