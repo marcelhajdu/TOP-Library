@@ -49,12 +49,8 @@ function removeBook(index) {
   }
 }
 
-function changeReadStatus(name) {
-  myLibrary.forEach((book) => {
-    if (book.title === name) {
-      book.isRead = !book.isRead;
-    }
-  });
+function changeReadStatus(id) {
+  myLibrary[id].isRead = !myLibrary[id].isRead;
 }
 
 function renderBooks() {
@@ -77,7 +73,15 @@ function renderBooks() {
       removeBook(id);
       renderBooks();
     });
+    let statBtn = document.createElement("BUTTON");
+    statBtn.innerText = "Change status";
+    statBtn.addEventListener("click", (e) => {
+      let id = e.explicitOriginalTarget.parentElement.dataset.id;
+      changeReadStatus(id);
+      renderBooks();
+    });
     li.appendChild(delBtn);
+    li.appendChild(statBtn);
     list.appendChild(li);
   }
 }
