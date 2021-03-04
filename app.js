@@ -45,7 +45,7 @@ function clearFields() {
 
 function removeBook(index) {
   if (index > -1) {
-    array.splice(index, 1);
+    myLibrary.splice(index, 1);
   }
 }
 
@@ -59,19 +59,6 @@ function changeReadStatus(name) {
 
 function renderBooks() {
   list.innerHTML = "";
-  /*
-  myLibrary.forEach((book) => {
-    let li = document.createElement("li");
-    li.appendChild(document.createTextNode(book.title));
-    li.appendChild(document.createTextNode(" "));
-    li.appendChild(document.createTextNode(book.author));
-    li.appendChild(document.createTextNode(" "));
-    li.appendChild(document.createTextNode(book.pages));
-    li.appendChild(document.createTextNode(" "));
-    li.appendChild(document.createTextNode(book.isRead));
-    list.appendChild(li);
-  });
-  */
   for (i = 0; i < myLibrary.length; i++) {
     let book = myLibrary[i];
     let li = document.createElement("li");
@@ -83,6 +70,14 @@ function renderBooks() {
     li.appendChild(document.createTextNode(" "));
     li.appendChild(document.createTextNode(book.isRead));
     li.setAttribute("data-id", i);
+    let delBtn = document.createElement("BUTTON");
+    delBtn.innerText = "Delete book";
+    delBtn.addEventListener("click", (e) => {
+      let id = e.explicitOriginalTarget.parentElement.dataset.id;
+      removeBook(id);
+      renderBooks();
+    });
+    li.appendChild(delBtn);
     list.appendChild(li);
   }
 }
